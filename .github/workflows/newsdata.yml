@@ -1,0 +1,47 @@
+name: CI - NewsData PHP
+
+on:
+  push:
+    branches: [ "main" ]        # Jalan setiap push ke branch main
+  pull_request:
+    branches: [ "main" ]        # Jalan setiap PR ke branch main
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+
+    # Environment untuk semua step di job ini
+    env:
+      API_KEY: ${{ secrets.API_KEY }}   # Ambil dari GitHub Secrets
+
+    steps:
+      # 1. Checkout source code
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. Setup PHP
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'     # Sesuaikan kalau perlu
+          coverage: none
+          extensions: curl
+
+      # 3. Cache vendor composer (biar workflow lebih cepat)
+      - name: Cache Composer dependencies
+        uses: actions/cache@v4
+        with:
+          path: vendor
+          key: composer-${{ hashFiles('composer.lock') }}
+          restore-keys: |
+            composer-
+
+      # 4. Install dependencies (termasuk phpunit)
+      - name: Install dependencies
+        run: |
+          composer install --no-interaction --no-progress --prefer-dist
+
+      # 5. Jalankan PHPUnit
+      - name: Run PHPUnit tests
+        run: |
+          vendor/bin/phpunit
