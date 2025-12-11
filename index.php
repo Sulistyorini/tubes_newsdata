@@ -443,9 +443,9 @@ $newsResults  = $apiData['results'];
 <header class="topbar">
     <div class="topbar-title">NewsHub</div>
     <nav class="topbar-nav">
-        <a href="#beranda" class="topbar-link">Beranda</a>
-        <a href="#pencarian" class="topbar-link">Pencarian</a>
-        <a href="#clickbait" class="topbar-link">Deteksi Clickbait</a>
+        <a href="index.php" class="topbar-link">Beranda</a>
+        <a href="#" class="topbar-link">Pencarian</a>
+        <a href="clickbait.php" class="topbar-link">Deteksi Clickbait</a>
     </nav>
 </header>
 
