@@ -195,10 +195,16 @@ $newsResults  = $apiData['results'];
         }
 
         .topbar-title {
-            font-weight: 700;
-            font-size: 20px;
-            color: #1d4ed8;
-        }
+    font-weight: 700;
+    font-size: 20px;
+    color: #1d4ed8;
+    text-decoration: none;  /* Hilangkan underline */
+    cursor: pointer;        /* Pointer saat hover */
+}
+
+.topbar-title:hover {
+    opacity: 0.8;          /* Efek hover */
+}
 
         .topbar-nav {
             display: flex;
@@ -441,10 +447,10 @@ $newsResults  = $apiData['results'];
 </head>
 <body>
 <header class="topbar">
-    <div class="topbar-title">NewsHub</div>
+    <a href="index.php" class="topbar-title">NewsHub</a>
     <nav class="topbar-nav">
         <a href="index.php" class="topbar-link">Beranda</a>
-        <a href="#" class="topbar-link">Pencarian</a>
+        <a href="search.php" class="topbar-link">Pencarian</a>
         <a href="clickbait.php" class="topbar-link">Deteksi Clickbait</a>
     </nav>
 </header>
